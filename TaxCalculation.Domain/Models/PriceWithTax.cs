@@ -19,7 +19,7 @@ namespace TaxCalculation.Domain.Models
         {
             BasePrice = new MonateryValue(basePrice, Currnecy.PLN);
             Tax = new MonateryValue(tax, Currnecy.PLN);
-            PriceWithTax = new MonateryValue(tax, Currnecy.PLN);
+            PriceWithTax = new MonateryValue(priceWithTax, Currnecy.PLN);
         }
 
         /// <summary>

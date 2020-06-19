@@ -37,6 +37,8 @@ namespace TaxCalculation
             services.AddControllers();
             services.AddSingleton<IPolishVATTaxCalculator, PolishVATTaxCalculator>();
             services.AddSingleton<TaxCalculationHandler>();
+            services.AddSingleton<GetCurrenciesHandler>();
+            services.AddSingleton<GetTaxRatesHandler>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo()
