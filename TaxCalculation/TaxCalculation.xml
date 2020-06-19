@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TaxCalculation</name>
+    </assembly>
+    <members>
+        <member name="M:TaxCalculation.Controllers.TaxCalculationController.CalculateTaxes(System.Collections.Generic.IEnumerable{TaxCalculation.Application.ApplicationModel.CalculationRequestEntry})">
+            <summary>
+            Returns taxes calculation base on provided input
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -11,13 +12,20 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using TaxCalculation.Application;
+using TaxCalculation.Domain;
+using TaxCalculation.Domain.TaxCalculator;
+using HostingEnvironmentExtensions = Microsoft.AspNetCore.Hosting.HostingEnvironmentExtensions;
 
 namespace TaxCalculation
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly IHostEnvironment _hostEnvironment;
+
+        public Startup(IConfiguration configuration, IHostEnvironment hostEnvironment)
         {
+            _hostEnvironment = hostEnvironment;
             Configuration = configuration;
         }
 
@@ -27,19 +35,22 @@ namespace TaxCalculation
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSingleton<IPolishVATTaxCalculator, PolishVATTaxCalculator>();
+            services.AddSingleton<TaxCalculationHandler>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo()
                 {
                     Version = "v1",
-                    Title = "Moje API .NET Core",
-                    Description = "Przyk³adowy opis",
+                    Title = "Tax Calculation Service",
+                    Description = "Service created for Polish VAT calculation",
                     Contact = new OpenApiContact()
                     {
-                        Name = "Strona g³ówna - plukasiewicz.net",
-                        Email = "Zak³adka: kontakt"
+                        Name = "Dominik Feliks",
+                        Email = "dominik.feliks@hotmail.com"
                     }
                 });
+                c.IncludeXmlComments( Path.Combine(_hostEnvironment.ContentRootPath,@"TaxCalculation.xml"));
             });
 
         }
@@ -61,7 +72,7 @@ namespace TaxCalculation
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "TaxCalculation service");
             });
 
             app.UseEndpoints(endpoints =>
