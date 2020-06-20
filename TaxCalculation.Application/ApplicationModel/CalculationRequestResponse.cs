@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TaxCalculation.Application.ApplicationModel
+﻿namespace TaxCalculation.Application.ApplicationModel
 {
     /// <summary>
     /// Represents an entry of tax calculation results

@@ -5,7 +5,5 @@ namespace TaxCalculation.Application.ApplicationValidators
 {
     public class TaxRateRequestValidator : AbstractValidator<TaxRateRequest>
     {
-        public TaxRateRequestValidator()
-        { }
     }
 }

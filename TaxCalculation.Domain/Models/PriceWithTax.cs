@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TaxCalculation.Domain.Models
+﻿namespace TaxCalculation.Domain.Models
 {
     /// <summary>
     /// Represents the result of tax calculation
@@ -17,34 +13,24 @@ namespace TaxCalculation.Domain.Models
         /// <param name="priceWithTax"></param>
         public PriceWithTaxes(decimal basePrice, decimal tax, decimal priceWithTax)
         {
-            BasePrice = new MonateryValue(basePrice, Currnecy.PLN);
-            Tax = new MonateryValue(tax, Currnecy.PLN);
-            PriceWithTax = new MonateryValue(priceWithTax, Currnecy.PLN);
-        }
-
-        /// <summary>
-        /// Parameter less constructor
-        /// </summary>
-        public PriceWithTaxes()
-        {
-            BasePrice = new MonateryValue(0,Currnecy.PLN);
-            Tax = new MonateryValue(0, Currnecy.PLN); ;
-            PriceWithTax = new MonateryValue(0, Currnecy.PLN);
+            BasePrice = new MonetaryValue(basePrice, Currency.PLN);
+            Tax = new MonetaryValue(tax, Currency.PLN);
+            PriceWithTax = new MonetaryValue(priceWithTax, Currency.PLN);
         }
 
         /// <summary>
         /// Price without tax
         /// </summary>
-        public MonateryValue BasePrice { get; set; }
+        public MonetaryValue BasePrice { get; set; }
 
         /// <summary>
         /// Tax value
         /// </summary>
-        public MonateryValue Tax { get; set; }
+        public MonetaryValue Tax { get; set; }
 
         /// <summary>
         /// Price with tax
         /// </summary>
-        public MonateryValue PriceWithTax { get; set; }
+        public MonetaryValue PriceWithTax { get; set; }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using TaxCalculation.Application.ApplicationModel;
-using TaxCalculation.Domain;
 using TaxCalculation.Domain.Models;
+using TaxCalculation.Domain.TaxCalculator;
 using TaxCalculationUtilities.Handlers;
 
 namespace TaxCalculation.Application
@@ -42,16 +42,16 @@ namespace TaxCalculation.Application
         {
             try
             {
-                var calulationResult = calculationMethod.Invoke(calculationEntry.BasePrice.Value);
+                var calculationResult = calculationMethod.Invoke(calculationEntry.BasePrice.Value);
                 return new CalculationResponse()
                 {
                     ItemName = calculationEntry.ItemName,
-                    PriceWithTax = calulationResult.PriceWithTax.DisplayValue(),
-                    Tax = calulationResult.Tax.DisplayValue(),
-                    BasePrice = calulationResult.BasePrice.DisplayValue()
+                    PriceWithTax = calculationResult.PriceWithTax.DisplayValue(),
+                    Tax = calculationResult.Tax.DisplayValue(),
+                    BasePrice = calculationResult.BasePrice.DisplayValue()
                 };
             }
-            catch (ArgumentOutOfRangeException e)
+            catch (ArgumentOutOfRangeException)
             {
                 return new CalculationResponse()
                 {

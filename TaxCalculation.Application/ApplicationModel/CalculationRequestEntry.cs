@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TaxCalculation.Domain.Models;
-
-namespace TaxCalculation.Application.ApplicationModel
+﻿namespace TaxCalculation.Application.ApplicationModel
 {
     /// <summary>
     /// Single product or service for which the tax should be calculated

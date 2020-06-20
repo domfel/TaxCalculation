@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using TaxCalculation.Application.ApplicationModel;
-using TaxCalculation.Domain.Models;
 using TaxCalculationUtilities.Handlers;
 
 namespace TaxCalculation.Application

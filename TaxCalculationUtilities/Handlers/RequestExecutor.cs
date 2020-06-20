@@ -42,7 +42,10 @@ namespace TaxCalculationUtilities.Handlers
             catch (Exception e)
             {
                 _logger.Log(LogLevel.Error, e, "Unhandled Exception");
-                return new StatusCodeResult(StatusCodes.Status500InternalServerError);
+                return new ObjectResult("INTERNAL SERVER ERROR")
+                {
+                    StatusCode = StatusCodes.Status500InternalServerError,
+                }; 
             }
         }
     }

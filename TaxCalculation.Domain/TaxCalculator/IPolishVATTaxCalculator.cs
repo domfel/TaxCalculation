@@ -1,6 +1,6 @@
 ﻿using TaxCalculation.Domain.Models;
 
-namespace TaxCalculation.Domain
+namespace TaxCalculation.Domain.TaxCalculator
 {
     /// <summary>
     ///  Returns calculated value of taxes for specified Polish VAT tax rates

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TaxCalculationUtilities.Handlers
+﻿namespace TaxCalculationUtilities.Handlers
 {
     /// <summary>
     /// Interface for marking query handlers

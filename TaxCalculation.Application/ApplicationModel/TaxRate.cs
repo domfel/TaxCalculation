@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TaxCalculation.Application.ApplicationModel
+﻿namespace TaxCalculation.Application.ApplicationModel
 {
     public enum TaxRate
     {

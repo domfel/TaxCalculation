@@ -8,7 +8,7 @@ using TaxCalculationUtilities.Handlers;
 
 namespace TaxCalculation
 {
-    public static class DepedencyRegistrations
+    public static class DependencyRegistrations
     {
         public static void AddValidators(this IServiceCollection collection)
         {

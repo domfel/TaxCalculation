@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using TaxCalculation.Application;
 using TaxCalculation.Application.ApplicationModel;
 using TaxCalculationUtilities.Handlers;
 
@@ -31,7 +26,6 @@ namespace TaxCalculation.Controllers
         [HttpPost]
         public IActionResult CalculateTaxes(CalculationRequest request)
         {
-           
             return _calculationExecutor.Execute(request);
         }
     }

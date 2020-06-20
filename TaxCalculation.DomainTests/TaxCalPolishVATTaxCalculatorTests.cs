@@ -1,8 +1,5 @@
-﻿using System;
-using System.Runtime.InteropServices;
-using FluentAssertions;
+﻿using FluentAssertions;
 using NUnit.Framework;
-using TaxCalculation.Domain;
 using TaxCalculation.Domain.Models;
 using TaxCalculation.Domain.TaxCalculator;
 
