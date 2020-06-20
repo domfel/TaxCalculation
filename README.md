@@ -20,22 +20,22 @@ Enpoint allows to send a collection of products or services with prices and desi
             {
             "itemName": "cola",
             "basePrice": 2.50,
-            "taxRateId": 3
+            "taxRate": 3
             },
             {
             "itemName": "Book",
             "basePrice": 10,
-            "taxRateId": 2
+            "taxRate": 2
             },
             {
             "itemName": "Postal Service",
             "basePrice": 5.0,
-            "taxRateId": 1
+            "taxRate": 1
             },
             {
             "itemName": "Laptop",
             "basePrice": 2000,
-            "taxRateId": 4
+            "taxRate": 4
             }
         ]
     }

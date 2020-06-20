@@ -16,9 +16,10 @@ namespace TaxCalculation.Application.ApplicationValidators
             RuleFor(x => x.ItemName)
                 .NotEmpty();
 
-            RuleFor(x => x.TaxRateId)
+            RuleFor(x => x.TaxRate)
                 .NotEmpty()
-                .Must(r => Enum.GetValues(typeof(TaxRate)).Cast<TaxRate>().Any(c => (int) c == r));
+                .IsInEnum();
+                
         }
     }
 }

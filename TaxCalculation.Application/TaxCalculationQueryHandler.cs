@@ -20,7 +20,7 @@ namespace TaxCalculation.Application
         {
             foreach (var item in query.Data)
             {
-                switch ((TaxRate)item.TaxRateId)
+                switch (item.TaxRate)
                 {
                     case TaxRate.Exempt:
                         yield return MapToResponse(_taxCalculator.VATTax0Rate, item);

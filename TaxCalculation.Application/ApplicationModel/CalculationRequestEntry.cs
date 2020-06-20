@@ -16,6 +16,6 @@
         /// <summary>
         /// Tax rate specific for related product or service
         /// </summary>
-        public int? TaxRateId { get; set; }
+        public TaxRate? TaxRate { get; set; }
     }
 }
