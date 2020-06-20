@@ -3,6 +3,7 @@ using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace TaxCalculationUtilities.Handlers
 {
@@ -11,17 +12,13 @@ namespace TaxCalculationUtilities.Handlers
     /// </summary>
     public class RequestExecutor<TIn,TOut>
     {
-        private readonly ILogger _logger;
         private readonly AbstractValidator<TIn> _validator;
         private readonly IQueryHandler<TIn, TOut> _handler;
 
         public RequestExecutor(
-            ILogger logger,
             AbstractValidator<TIn> validator,
-            IQueryHandler<TIn, TOut> handler
-        )
+            IQueryHandler<TIn, TOut> handler)
         {
-            _logger = logger;
             _validator = validator;
             _handler = handler;
         }
@@ -41,7 +38,7 @@ namespace TaxCalculationUtilities.Handlers
             }
             catch (Exception e)
             {
-                _logger.Log(LogLevel.Error, e, "Unhandled Exception");
+                Log.Error(e, "Unhandled Exception");
                 return new ObjectResult("INTERNAL SERVER ERROR")
                 {
                     StatusCode = StatusCodes.Status500InternalServerError,
