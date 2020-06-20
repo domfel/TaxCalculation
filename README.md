@@ -11,7 +11,7 @@ This service allows to calculate VAT tax reates based on Polish regulations.
 Api exposes two controllers one for making the tax calulations, and second for obtainig values of tax rates. 
 
 ### Calculating Tax
-Enpoint allows to send a collection of products or services with prices and desired tax rates for which we want to calculate tax value. Response contains the same list of products and services together with calulated tax value and the full price (base price and tax value). 
+Enpoint allows to send a collection of products or services with prices and desired tax rates for which we want to calculate tax value. Response contains the same list of products and services together with calulated tax value and the full price (base price and tax value). In case that calculation of one of the entries will fail, it will be retruned with error message. Other calculation entries should be calculated normaly.
 
 #### Sample request
      POST "https://localhost:44399/api/TaxCalculation"
