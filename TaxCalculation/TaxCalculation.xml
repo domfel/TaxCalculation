@@ -4,7 +4,23 @@
         <name>TaxCalculation</name>
     </assembly>
     <members>
-        <member name="M:TaxCalculation.Controllers.TaxCalculationController.CalculateTaxes(System.Collections.Generic.IEnumerable{TaxCalculation.Application.ApplicationModel.CalculationRequestEntry})">
+        <member name="T:TaxCalculation.Controllers.DictionariesController">
+            <summary>
+            Exposes methods for obtaining dictionary values used in API 
+            </summary>
+        </member>
+        <member name="M:TaxCalculation.Controllers.DictionariesController.TaxRates">
+            <summary>
+            Retries all possible tax rates
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:TaxCalculation.Controllers.TaxCalculationController">
+            <summary>
+            Exposes methods for tax calculation
+            </summary>
+        </member>
+        <member name="M:TaxCalculation.Controllers.TaxCalculationController.CalculateTaxes(TaxCalculation.Application.ApplicationModel.CalculationRequest)">
             <summary>
             Returns taxes calculation base on provided input
             </summary>

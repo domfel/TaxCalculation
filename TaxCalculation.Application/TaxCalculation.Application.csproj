@@ -5,11 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TaxCalculation.Domain\TaxCalculation.Domain.csproj" />
+    <PackageReference Include="FluentValidation" Version="9.0.0-preview5" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ApplicationValidators\" />
+    <ProjectReference Include="..\TaxCalculation.Domain\TaxCalculation.Domain.csproj" />
+    <ProjectReference Include="..\TaxCalculationUtilities\TaxCalculationUtilities.csproj" />
   </ItemGroup>
 
 </Project>

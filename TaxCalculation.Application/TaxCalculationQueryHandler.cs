@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using TaxCalculation.Application.ApplicationModel;
 using TaxCalculation.Domain;
 using TaxCalculation.Domain.Models;
+using TaxCalculationUtilities.Handlers;
 
 namespace TaxCalculation.Application
 {
-    public class TaxCalculationHandler
+    public class TaxCalculationQueryHandler : IQueryHandler<CalculationRequest, IEnumerable<CalculationResponse>>
     {
         private readonly IPolishVATTaxCalculator _taxCalculator;
 
-        public TaxCalculationHandler(IPolishVATTaxCalculator taxCalculator)
+        public TaxCalculationQueryHandler(IPolishVATTaxCalculator taxCalculator)
         {
             _taxCalculator = taxCalculator;
         }
 
-        public IEnumerable<CalculationRequestResponse> Execute(IEnumerable<CalculationRequestEntry> entries)
+        public IEnumerable<CalculationResponse> Execute(CalculationRequest query)
         {
-            foreach (var item in entries)
+            foreach (var item in query.Data)
             {
-                switch (item.TaxRate)
+                switch ((TaxRate)item.TaxRateId)
                 {
                     case TaxRate.Exempt:
                         yield return MapToResponse(_taxCalculator.VATTax0Rate, item);
@@ -37,12 +38,12 @@ namespace TaxCalculation.Application
             }
         }
 
-        private CalculationRequestResponse MapToResponse(Func<decimal, PriceWithTaxes> calculationMethod, CalculationRequestEntry calculationEntry)
+        private CalculationResponse MapToResponse(Func<decimal, PriceWithTaxes> calculationMethod, CalculationRequestEntry calculationEntry)
         {
             try
             {
                 var calulationResult = calculationMethod.Invoke(calculationEntry.BasePrice.Value);
-                return new CalculationRequestResponse()
+                return new CalculationResponse()
                 {
                     ItemName = calculationEntry.ItemName,
                     PriceWithTax = calulationResult.PriceWithTax.DisplayValue(),
@@ -52,7 +53,7 @@ namespace TaxCalculation.Application
             }
             catch (ArgumentOutOfRangeException e)
             {
-                return new CalculationRequestResponse()
+                return new CalculationResponse()
                 {
                     ItemName = calculationEntry.ItemName,
                     Error = "Cannot calculate taxes for this set of values"

@@ -18,11 +18,9 @@ namespace TaxCalculation.Application.ApplicationModel
         /// Base price
         /// </summary>
         public decimal? BasePrice { get; set; }
-        
-        public int? CurrencyId { get; set; }
         /// <summary>
         /// Tax rate specific for related product or service
         /// </summary>
-        public TaxRate? TaxRate { get; set; }
+        public int? TaxRateId { get; set; }
     }
 }

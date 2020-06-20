@@ -6,18 +6,22 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TaxCalculation.Application;
 using TaxCalculation.Application.ApplicationModel;
+using TaxCalculationUtilities.Handlers;
 
 namespace TaxCalculation.Controllers
 {
+    /// <summary>
+    /// Exposes methods for tax calculation
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class TaxCalculationController : ControllerBase
     {
-        private readonly TaxCalculationHandler _handler;
+        private readonly RequestExecutor<CalculationRequest, IEnumerable<CalculationResponse>> _calculationExecutor;
 
-        public TaxCalculationController(TaxCalculationHandler handler)
+        public TaxCalculationController(RequestExecutor<CalculationRequest, IEnumerable<CalculationResponse>> calculationExecutor)
         {
-            _handler = handler;
+            _calculationExecutor = calculationExecutor;
         }
 
         /// <summary>
@@ -25,10 +29,10 @@ namespace TaxCalculation.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult CalculateTaxes(IEnumerable<CalculationRequestEntry> request)
+        public IActionResult CalculateTaxes(CalculationRequest request)
         {
            
-            return Ok(_handler.Execute(request));
+            return _calculationExecutor.Execute(request);
         }
     }
 }

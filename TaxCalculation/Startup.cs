@@ -13,8 +13,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using TaxCalculation.Application;
+using TaxCalculation.Application.ApplicationModel;
 using TaxCalculation.Domain;
 using TaxCalculation.Domain.TaxCalculator;
+using TaxCalculationUtilities.Handlers;
 using HostingEnvironmentExtensions = Microsoft.AspNetCore.Hosting.HostingEnvironmentExtensions;
 
 namespace TaxCalculation
@@ -36,9 +38,10 @@ namespace TaxCalculation
         {
             services.AddControllers();
             services.AddSingleton<IPolishVATTaxCalculator, PolishVATTaxCalculator>();
-            services.AddSingleton<TaxCalculationHandler>();
-            services.AddSingleton<GetCurrenciesHandler>();
-            services.AddSingleton<GetTaxRatesHandler>();
+            services.AddValidators();
+            services.AddHandlers();
+            services.AddExecutors();
+            services.AddLogging();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo()
@@ -53,6 +56,7 @@ namespace TaxCalculation
                     }
                 });
                 c.IncludeXmlComments( Path.Combine(_hostEnvironment.ContentRootPath,@"TaxCalculation.xml"));
+                c.DescribeAllEnumsAsStrings();
             });
 
         }
@@ -60,23 +64,13 @@ namespace TaxCalculation
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
-            app.UseAuthorization();
-
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "TaxCalculation service");
             });
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

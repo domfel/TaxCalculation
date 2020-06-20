@@ -7,7 +7,7 @@ namespace TaxCalculation.Application.ApplicationModel
     /// <summary>
     /// Represents an entry of tax calculation results
     /// </summary>
-    public class CalculationRequestResponse
+    public class CalculationResponse
     {
         /// <summary>
         /// Product or service name
