@@ -72,8 +72,8 @@ Enpoint allows to send a collection of products or services with prices and desi
             }
         ]
 
-### Obtaining dictionary Values
-
+### Obtaining dictionary values
+This endpont exposes all possible values o tax rates that can be used for calcualtion. 
 
 #### Sample Request
     GET "https://localhost:44399/TaxRates
